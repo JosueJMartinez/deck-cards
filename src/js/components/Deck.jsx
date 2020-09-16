@@ -4,6 +4,8 @@ import Card from './Card';
 import { v4 as uuidv4 } from 'uuid';
 import '../../css/Deck.css';
 
+const BASE_API_URL = 'https://deckofcardsapi.com/api/deck/';
+
 export default class Deck extends Component {
 	state = {
 		deck_id: '',
@@ -13,9 +15,7 @@ export default class Deck extends Component {
 
 	async componentDidMount() {
 		try {
-			const res = await Axios.get(
-				'https://deckofcardsapi.com/api/deck/new/shuffle/'
-			);
+			const res = await Axios.get(`${BASE_API_URL}new/shuffle/`);
 			this.setState({
 				deck_id: res.data.deck_id,
 				remaining: res.data.remaining
@@ -32,7 +32,7 @@ export default class Deck extends Component {
 	async drawCard() {
 		try {
 			const res = await Axios.get(
-				`https://deckofcardsapi.com/api/deck/${this.state.deck_id}/draw/`
+				`${BASE_API_URL}${this.state.deck_id}/draw/`
 			);
 
 			this.setState(prevState => {
