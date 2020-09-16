@@ -1,30 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import '../../css/Card.css';
 
 export default class Card extends Component {
 	render() {
-		const { image, value, suit, degree } = this.props.card;
+		const { image, value, suit, degree, xAxis, yAxis } = this.props.card;
 
 		return (
-			<div>
-				<div
+			<Fragment>
+				{image && <img className='Card' 
 					style={{
-						transform: `rotate(${degree}deg),`,
-						top: '10px',
-						left: '10px'
+						transform: `rotate(${degree}deg) translate(${xAxis}px, ${yAxis}px)`,
 					}}
-				>
-					{image && <img src={image} alt={`${value} of ${suit}`} />}
-				</div>
-				<div
-					style={{
-						transform: `rotate(${degree}deg)`,
-						zIndex: '1'
-					}}
-				>
-					{image && <img src={image} alt={`${value} of ${suit}`} />}
-				</div>
-			</div>
+				src={image} alt={`${value} of ${suit}`} />}
+				
+			</Fragment>
 		);
 	}
 }

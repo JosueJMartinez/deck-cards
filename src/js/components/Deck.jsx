@@ -43,7 +43,9 @@ export default class Deck extends Component {
 							image: res.data.cards[0].image,
 							value: res.data.cards[0].value,
 							suit: res.data.cards[0].suit,
-							degree: 40 - Math.floor(Math.random() * 80)
+							degree: this.generateRandom(140, 70),
+							yAxis: this.generateRandom(60, 30),
+							xAxis: this.generateRandom(60, 30)
 						}
 					],
 					remaining: res.data.remaining
@@ -52,6 +54,10 @@ export default class Deck extends Component {
 		} catch (err) {
 			console.log('axios failed retrieving card');
 		}
+	}
+
+	generateRandom = (vary, median) => {
+		return median - Math.floor(Math.random() * vary);
 	}
 
 	render() {
