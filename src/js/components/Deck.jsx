@@ -71,11 +71,13 @@ export default class Deck extends Component {
 						<h1>No more cards</h1>
 					)}
 				</div>
-
-				{this.state.drawnCards.map(card => {
-					const id = uuidv4();
-					return <Card card={card} key={id} id={id} />;
-				})}
+				<div className='card-area'>
+					{this.state.drawnCards.map(card => {
+						const id = uuidv4();
+						return <Card card={card} key={id} id={id} />;
+					})}
+				</div>
+				
 			</div>
 		);
 	}
