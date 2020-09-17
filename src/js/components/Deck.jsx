@@ -60,7 +60,7 @@ export default class Deck extends Component {
 	}
 
 	generateRandom = (vary, median) => {
-		return median - Math.floor(Math.random() * vary);
+		return median - Math.random() * vary;
 	};
 
 	render() {
