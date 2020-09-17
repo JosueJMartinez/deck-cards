@@ -34,18 +34,21 @@ export default class Deck extends Component {
 			const res = await Axios.get(
 				`${BASE_API_URL}${this.state.deck_id}/draw/`
 			);
-
+			const { value, image, suit } = res.data.cards[0];
 			this.setState(prevState => {
 				return {
 					drawnCards: [
 						...prevState.drawnCards,
 						{
-							image: res.data.cards[0].image,
-							value: res.data.cards[0].value,
-							suit: res.data.cards[0].suit,
-							degree: this.generateRandom(140, 70),
-							yAxis: this.generateRandom(60, 30),
-							xAxis: this.generateRandom(60, 30)
+							image: image,
+							alt: `${value} of ${suit}`,
+							cssTransform: `rotate(${this.generateRandom(
+								140,
+								70
+							)}deg) translate(${this.generateRandom(
+								60,
+								30
+							)}px, ${this.generateRandom(60, 30)}px)`
 						}
 					],
 					remaining: res.data.remaining
@@ -58,7 +61,7 @@ export default class Deck extends Component {
 
 	generateRandom = (vary, median) => {
 		return median - Math.floor(Math.random() * vary);
-	}
+	};
 
 	render() {
 		return (
@@ -71,13 +74,12 @@ export default class Deck extends Component {
 						<h1>No more cards</h1>
 					)}
 				</div>
-				<div className='card-area'>
+				<div className="card-area">
 					{this.state.drawnCards.map(card => {
 						const id = uuidv4();
 						return <Card card={card} key={id} id={id} />;
 					})}
 				</div>
-				
 			</div>
 		);
 	}
