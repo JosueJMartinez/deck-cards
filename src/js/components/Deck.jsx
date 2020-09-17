@@ -67,7 +67,8 @@ export default class Deck extends Component {
 		return (
 			<div className="Deck">
 				<div className="Deck-input">
-					<h1>Card Dealer React Demo</h1>
+					<h1 className="title">♦ Card Dealer ♦</h1>
+					<h2 className="title subtitle">♦ Simple React Demo ♦</h2>
 					{this.state.remaining ? (
 						<button onClick={this.handleClick}>Draw Card</button>
 					) : (
